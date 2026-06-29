@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrasi</title>
+  <link rel="stylesheet" href="user/style-registrasi.css">
+</head>
+
+<body>
+
+<div class="card">
+  <div class="header">
+    <h2>SiPeDes</h2>
+    <h1>Buat Akun Baru</h1>
+    <p>Daftar akun untuk menggunakan layanan SiPeDes</p>
+
+    <div class="step">1 Buat Akun</div>
+    <div class="step">2 Isi Data Diri</div>
+  </div>
+
+  <div class="form-box">
+    <h2>Buat Akun</h2>
+    <p>Langkah 1 dari 2</p>
+
+    <form action="registrasi.php" method="POST" autocomplete="off">
+      <label>Email *</label>
+      <input type="email" name="email_registrasi" placeholder="contoh@email.com" required>
+
+      <label>Password *</label>
+      <input type="password" name="password" required>
+
+      <label>Konfirmasi Password *</label>
+      <input type="password" name="konfirmasi_password" required>
+
+      <div class="agreement">
+        <input type="checkbox" id="setuju" required>
+        <label for="setuju">Saya menyetujui syarat & ketentuan.</label>
+      </div>
+
+      <button type="submit">Lanjut</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
