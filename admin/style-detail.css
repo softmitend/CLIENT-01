@@ -1,0 +1,59 @@
+.detail-box {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.detail-box h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-row {
+  display: flex;
+  padding: 10px 0;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 14px;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  width: 160px;
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: #7c3aed;
+  text-decoration: none;
+}
+
+.aksi-besar {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.aksi-besar a {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.aksi-besar a.approve { background: #dcfce7; color: #15803d; }
+.aksi-besar a.tolak { background: #fee2e2; color: #b91c1c; }
+.aksi-besar a.back-btn { background: #f3f4f6; color: #111827; }

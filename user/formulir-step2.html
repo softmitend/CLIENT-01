@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Step 3 - Dokumen</title>
+  <link rel="stylesheet" href="style-formulir.css">
+  <link rel="stylesheet" href="style-formulir-step2.css">
+</head>
+<body>
+<main class="form-page">
+  <div class="breadcrumb">
+    <a href="dashboard.html">Beranda</a>
+    <span>›</span>
+    <a href="pilih-surat.html">Pilih Surat</a>
+    <span>›</span>
+    <span>Isi Formulir</span>
+  </div>
+  <h1 id="judulSurat">Surat Domisili</h1>
+  <p class="subtitle">Isi seluruh data dengan benar</p>
+  
+  <section class="user-card">
+    <div class="avatar" id="userInitial">?</div>
+    <div class="user-main">
+      <h4 id="userName">Loading...</h4>
+      <p id="userNik">Loading...</p>
+    </div>
+    <a href="dashboard.html">Lihat Profil</a>
+  </section>
+
+  <section class="stepper">
+    <div class="step done">
+      <span>1</span>
+      <p>Data Diri</p>
+    </div>
+    <div class="line"></div>
+    <div class="step done">
+      <span>2</span>
+      <p>Keperluan</p>
+    </div>
+    <div class="line"></div>
+    <div class="step active">
+      <span>3</span>
+      <p>Dokumen</p>
+    </div>
+    <div class="line"></div>
+    <div class="step">
+      <span>4</span>
+      <p>Kirim</p>
+    </div>
+  </section>
+
+  <div class="info">
+    Format JPG, PNG, atau PDF. Maksimal 2 MB per file.
+  </div>
+
+  <form action="proses-dokumen.php" method="POST" enctype="multipart/form-data">
+    <div class="upload-group">
+      <label id="labelKtp">Foto KTP *</label>
+      <div class="upload-area">
+        <p id="textKtp">Klik untuk upload KTP</p>
+        <small>JPG, PNG, PDF · Maks 2 MB</small>
+      </div>
+      <input type="file" name="ktp" required>
+    </div>
+
+    <div class="upload-group">
+      <label>Foto Kartu Keluarga *</label>
+      <div class="upload-area">
+        <p>Klik untuk upload Kartu Keluarga</p>
+        <small>JPG, PNG, PDF · Maks 2 MB</small>
+      </div>
+      <input type="file" name="kk" required>
+    </div>
+
+    <div class="upload-group">
+      <label>Surat Pengantar RT/RW</label>
+      <div class="upload-area">
+        <p>Klik untuk upload Surat RT/RW</p>
+        <small>JPG, PNG, PDF · Maks 2 MB</small>
+      </div>
+      <input type="file" name="surat_rt">
+    </div>
+
+    <div class="upload-group">
+      <label>Dokumen Tambahan (opsional)</label>
+      <div class="upload-area optional">
+        <p>Tambah dokumen lain jika ada</p>
+        <small>(opsional)</small>
+      </div>
+      <input type="file" name="lain">
+    </div>
+
+    <div class="button-group">
+      <a href="formulir.html" class="back">← Kembali</a>
+      <button type="submit" name="lanjut" class="next">Lanjut →</button>
+    </div>
+  </form>
+</main>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const jenis = params.get("jenis");
+
+if (jenis === "domisili") {
+  document.getElementById("labelKtp").textContent = "Foto KTP/KIA *";
+  document.getElementById("textKtp").textContent = "Klik untuk upload KTP/KIA";
+}
+
+// Mengambil data user untuk dipasang di komponen header profile
+fetch("get-user.php")
+  .then(res => {
+    if (!res.ok) {
+      throw new Error("Koneksi ke server bermasalah saat memuat session.");
+    }
+    return res.json();
+  })
+  .then(data => {
+    if (data.status === "error") {
+      // PERBAIKAN: Kami log ke console terlebih dahulu untuk memeriksa error-nya.
+      // Jika Anda yakin session aman, matikan tanda komentar (//) di bawah ini setelah selesai testing.
+      console.warn("Peringatan: get-user.php mendeteksi status error.", data);
+      // window.location.href = "login.html";
+      
+      document.getElementById("userName").textContent = "Gagal memuat profil";
+      document.getElementById("userNik").textContent = "Session kemungkinan sibuk/terputus";
+      return;
+    }
+    
+    // Jika sukses, pasang data ke HTML
+    document.getElementById("userName").textContent = data.nama;
+    document.getElementById("userNik").textContent =
+      "NIK: " + data.nik + " - RT " + data.rt + "/RW " + data.rw;
+    document.getElementById("userInitial").textContent =
+      data.nama.substring(0, 2).toUpperCase();
+  })
+  .catch(err => {
+    console.error("Terjadi kendala fetch:", err);
+    document.getElementById("userName").textContent = "Koneksi Bermasalah";
+  });
+
+// Handler animasi dan preview box upload file
+document.querySelectorAll('.upload-area').forEach(area => {
+    const input = area.nextElementSibling;
+    area.addEventListener('click', () => input.click());
+    input.addEventListener('change', () => {
+        if (input.files[0]) {
+            // Membatasi validasi visual sederhana di client-side (opsional)
+            const fileSize = input.files[0].size / 1024 / 1024; // ukuran dalam MB
+            if (fileSize > 2) {
+                alert("File '" + input.files[0].name + "' terlalu besar (Lebih dari 2MB). Silakan kompres terlebih dahulu!");
+                input.value = ""; // Reset input jika kebesaran
+                return;
+            }
+            area.innerHTML = '<p>' + input.files[0].name + ' ✓</p>';
+            area.style.background = '#ede9fe';
+        }
+    });
+});
+</script>
+
+</body>
+</html>

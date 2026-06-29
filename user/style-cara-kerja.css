@@ -1,0 +1,68 @@
+.cara-kerja-page {
+    padding: 60px 80px;
+    background: #f3e8ff;
+    min-height: calc(100vh - 60px);
+}
+
+.cara-kerja-judul {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.cara-kerja-judul p {
+    font-size: 12px;
+    font-weight: 600;
+    color: #7c3aed;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.cara-kerja-judul h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.cara-kerja-judul span {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.cara-kerja-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.cara-kerja-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+}
+
+.ck-icon {
+    width: 48px;
+    height: 48px;
+    background: #ede9fe;
+    color: #7c3aed;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 auto 16px;
+}
+
+.cara-kerja-card h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.cara-kerja-card p {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.6;
+}
