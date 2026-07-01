@@ -243,7 +243,7 @@ function dokumenStatus($filename) {
         </tr>
       </table>
 
-      <p>Detail pengajuan surat:</p>
+      <!--<p>Detail pengajuan surat:</p>
 
       <table>
         <tr>
@@ -276,7 +276,7 @@ function dokumenStatus($filename) {
           <td>:</td>
           <td><?= e(ucfirst($data['status'])) ?></td>
         </tr>
-      </table>
+      </table> -->
 
       <!-- <p>Dokumen pendukung:</p>
 
